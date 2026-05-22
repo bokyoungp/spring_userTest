@@ -1,8 +1,11 @@
 package org.example.usertest.controller;
 
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.example.usertest.dto.UserReqDto;
 import org.example.usertest.dto.UserRespDto;
+import org.example.usertest.dto.UserUpdateReqDto;
+import org.example.usertest.dto.UserUpdateRespDto;
 import org.example.usertest.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,4 +31,14 @@ public class UserController {
     return service.createNewUser(reqDto);
   }
 
+  @PutMapping("/users/{id}")
+  public UserUpdateRespDto updateUser(@PathVariable("id") int id, @RequestBody UserUpdateReqDto reqDto) {
+    return service.updateUser(reqDto);
+  }
+
+  @DeleteMapping("/users/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void deleteUser(@PathVariable int id) {
+    service.deleteUser(id);
+  }
 }
