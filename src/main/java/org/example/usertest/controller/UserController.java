@@ -17,7 +17,7 @@ import java.util.List;
 public class UserController {
   private final UserService service;
 
-  @GetMapping(value = "/users", produces = MediaType.APPLICATION_XML_VALUE)
+  @GetMapping(value = "/users") // produces = MediaType.APPLICATION_XML_VALUE)
   public List<UserRespDto> getAllUsers() {
     return service.getAllUsers();
   }
