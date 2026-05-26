@@ -25,6 +25,16 @@ public class UserController {
     return service.getAllUsers();
   }
 
+  @GetMapping("/users/{id}")
+  public UserRespDto getOneUser(@PathVariable("id") int id) {
+    return service.getUserById(id);
+  }
+
+  @GetMapping({"/users/dept/{dept}", "/users/dept/"})
+  public List<UserRespDto> getAllUsersByDeptDynamic(@PathVariable(value="dept", required = false) String dept) {
+    return service.getAllUsersByDeptDynamic(dept);
+  }
+
   @PostMapping("/users")
   @ResponseStatus(HttpStatus.CREATED)
   public UserRespDto createNewUser(@RequestBody UserReqDto reqDto) {

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.usertest.repository.UserRepository">
+    <sql id="userColumns">id, user_id, username, email, age, dept</sql>
+    <select id="findAll"
+            resultType="User">
+        SELECT <include refid="userColumns" /> FROM user
+    </select>
+    <select id="findAllByDept"
+            resultType="User"
+            parameterType="string">
+        SELECT <include refid="userColumns" /> FROM user
+        where dept like concat('%', #{dept}, '%')
+    </select>
+    <select id="findAllByDeptDynamic"
+            resultType="User"
+            parameterType="string">
+        SELECT <include refid="userColumns" /> FROM user
+        <where>
+            <if test="dept != null">
+                dept like concat('%', #{dept}, '%')
+            </if>
+        </where>
+
+    </select>
+<!--    <select id="findById"-->
+<!--            resultType="User"-->
+<!--            parameterType="int">-->
+<!--        SELECT id, user_id, username, email FROM user-->
+<!--        WHERE id = #{id}-->
+<!--    </select>-->
+    <insert id="insert"
+            parameterType="User"
+            keyProperty="id"
+            useGeneratedKeys="true">
+        insert into user(user_id, username, email, age, dept)
+        values(#{userId}, #{username}, #{email}, #{age}, #{dept})
+    </insert>
+    <update id="update"
+            parameterType="User">
+        update user
+        set email=#{email}
+        where id=#{id}
+    </update>
+    <delete id="delete"
+        parameterType="int">
+        delete from user where id=#{id}
+    </delete>
+</mapper>
