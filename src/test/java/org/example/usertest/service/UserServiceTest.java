@@ -71,8 +71,8 @@ class UserServiceTest {
     // given
 
     // when
-    List<UserRespDto> users = service.getAllUsersByDeptDynamic("HR");
-    List<UserRespDto> users2 = service.getAllUsersByDeptDynamic(null);
+    List<UserRespDto> users = service.getAllUsersByDeptDynamic("HR", null);
+    List<UserRespDto> users2 = service.getAllUsersByDeptDynamic(null, null);
     List<UserRespDto> users3 = service.getAllUsers();
     // then
     Assertions.assertThat(users.size()).isEqualTo(2);

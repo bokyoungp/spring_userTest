@@ -22,8 +22,10 @@
             <if test="dept != null">
                 dept like concat('%', #{dept}, '%')
             </if>
+            <if test="age != null">
+                and age &gt;= #{age}
+            </if>
         </where>
-
     </select>
 <!--    <select id="findById"-->
 <!--            resultType="User"-->

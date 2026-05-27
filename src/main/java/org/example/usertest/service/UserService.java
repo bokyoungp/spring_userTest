@@ -24,8 +24,8 @@ public class UserService {
         .toList();
   }
 
-  public List<UserRespDto> getAllUsersByDeptDynamic(String dept) {
-    return repository.findAllByDeptDynamic(dept)
+  public List<UserRespDto> getAllUsersByDeptDynamic(String dept, Integer age) {
+    return repository.findAllByDeptDynamic(dept, age)
         .stream()
         .map(UserRespDto::of)
         .toList();

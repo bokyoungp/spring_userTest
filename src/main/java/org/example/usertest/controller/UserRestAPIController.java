@@ -27,10 +27,10 @@ public class UserRestAPIController {
     return service.getUserById(id);
   }
 
-  @GetMapping({"/users/dept/{dept}", "/users/dept/"})
-  public List<UserRespDto> getAllUsersByDeptDynamic(@PathVariable(value="dept", required = false) String dept) {
-    return service.getAllUsersByDeptDynamic(dept);
-  }
+//  @GetMapping({"/users/dept/{dept}", "/users/dept/"})
+//  public List<UserRespDto> getAllUsersByDeptDynamic(@PathVariable(value="dept", required = false) String dept) {
+//    return service.getAllUsersByDeptDynamic(dept);
+//  }
 
   @PostMapping("/users")
   @ResponseStatus(HttpStatus.CREATED)

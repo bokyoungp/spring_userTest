@@ -15,5 +15,5 @@ public interface UserRepository {
   void update(User user);
   void delete(int id);
   List<User> findAllByDept(String dept);
-  List<User> findAllByDeptDynamic(String dept);
+  List<User> findAllByDeptDynamic(String dept, Integer age);
 }
