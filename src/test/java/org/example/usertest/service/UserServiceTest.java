@@ -20,6 +20,9 @@ class UserServiceTest {
   @Autowired
   UserService service;
 
+  @Autowired
+  UserRepository repository;
+
   @BeforeAll
   static void init(){
     System.out.println("테스트 객체 생성전 - init()");

@@ -1,6 +1,5 @@
 package org.example.usertest.controller;
 
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.example.usertest.dto.UserReqDto;
 import org.example.usertest.dto.UserRespDto;
@@ -8,28 +7,24 @@ import org.example.usertest.dto.UserUpdateReqDto;
 import org.example.usertest.dto.UserUpdateRespDto;
 import org.example.usertest.service.UserService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
-public class UserController {
+@RequestMapping("/api/v1")
+public class UserRestAPIController {
   private final UserService service;
 
   @GetMapping(value = "/users") // produces = MediaType.APPLICATION_XML_VALUE)
-  public String getAllUsers(Model model) {
-    model.addAttribute("userList", service.getAllUsers());
-    return "userList";
+  public List<UserRespDto> getAllUsers() {
+    return service.getAllUsers();
   }
 
   @GetMapping("/users/{id}")
-  public String getOneUser(@PathVariable("id") int id, Model model) {
-    model.addAttribute("user",service.getUserById(id));
-    return "userInfo";
+  public UserRespDto getOneUser(@PathVariable("id") int id) {
+    return service.getUserById(id);
   }
 
   @GetMapping({"/users/dept/{dept}", "/users/dept/"})

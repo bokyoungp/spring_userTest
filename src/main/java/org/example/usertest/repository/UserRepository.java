@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface UserRepository {
   List<User> findAll();
-  @Select("SELECT id, user_id, username, email FROM user WHERE id = #{id}")
+  @Select("SELECT id, user_id, username, email, age, dept FROM user WHERE id = #{id}")
   User findById(int id);
   int insert(User user);
   void update(User user);
